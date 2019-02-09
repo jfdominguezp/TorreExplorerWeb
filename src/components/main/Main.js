@@ -19,11 +19,13 @@ export default class Main extends Component {
                     </Menu>
                     <div style={styles.headerContentStyle}>
                         <Header inverted>
-                            <span style={styles.titleStyle}>
-                                Find the most influential people in your Torre network
-                            </span>
+                            <div style={styles.titleStyle}>
+                                Looking for opportunities? Find the most influential people in your Torre network
+                            </div>
                         </Header>
-                        <Input type='text' placeholder='https://torre.bio/your-bio' className='header-input'/>
+                        <div style={{ marginTop: '2rem' }}>
+                            <Input type='text' placeholder='https://torre.bio/your-bio' className='header-input'/>
+                        </div>
                     </div>
                 </Container>
             </Segment>

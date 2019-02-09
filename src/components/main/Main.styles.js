@@ -9,6 +9,8 @@ export const headerContentStyle = {
     marginTop: '3.5rem',
     marginBottom: '3.5rem',
     backgroundColor: '#00acc1',
+    display: 'flex',
+    flexDirection: 'column'
 }
 
 export const logoStyle = {
@@ -18,10 +20,13 @@ export const logoStyle = {
 };
 
 export const titleStyle = {
-    fontSize: '30px',
+    alignSelf: 'center',
+    fontSize: '35px',
     fontWeight: '900',
     letterSpacing: '-1px',
-    lineHeight: '37px'
+    lineHeight: '42px',
+    maxWidth: '60%',
+    margin: 'auto'
 }
 
 
