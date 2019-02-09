@@ -1,7 +1,7 @@
 export const headerStyle = {
     backgroundColor: '#00acc1',
     color: '#fff',
-    minHeight: '200px',
+    minHeight: '35vh',
     padding: '1em 0em',
     marginBottom: '3rem'
 };
@@ -12,6 +12,18 @@ export const headerContentStyle = {
     backgroundColor: '#00acc1',
     display: 'flex',
     flexDirection: 'column'
+}
+
+export const bodyContainerStyle = {
+    minHeight: '50vh'
+}
+
+export const placeholderContainerStyle = {
+    minHeight: 'inherit',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
 }
 
 export const logoStyle = {

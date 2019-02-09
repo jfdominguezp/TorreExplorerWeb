@@ -3,6 +3,33 @@ import { Button, Container, Form, Header, Input, Menu, Segment } from 'semantic-
 import * as styles from './Styles';
 
 export default class PageHeader extends Component {
+
+    state = {
+        bio: ''
+    }
+
+    onChange = (e, { name, value }) => {
+        this.setState({ [name]: value });
+    }
+
+    onSubmit = async () => {
+        this.props.setLoading(true);
+        await this.props.fetchConnections(this.state.bio);
+        this.props.setLoading(false);
+    }
+
+    renderExportButton() {
+        if (this.props.connections.length) {
+            return (
+                <Menu.Item position='right'>
+                    <Button inverted>
+                        Export connections
+                    </Button>
+                </Menu.Item>
+            );
+        }
+    }
+
     render() {
         return (
             <Segment vertical textAlign='center' style={styles.headerStyle}>
@@ -11,11 +38,7 @@ export default class PageHeader extends Component {
                         <Menu.Item>
                             <span style={styles.logoStyle}>torre</span>
                         </Menu.Item>
-                        <Menu.Item position='right'>
-                            <Button inverted>
-                                Export connections
-                            </Button>
-                        </Menu.Item>
+                        { this.renderExportButton() }
                     </Menu>
                     <div style={styles.headerContentStyle}>
                         <Header inverted>
@@ -24,8 +47,17 @@ export default class PageHeader extends Component {
                             </div>
                         </Header>
                         <div style={{ marginTop: '2rem' }}>
-                            <Form>
-                                <Input type='text' placeholder='https://torre.bio/your-bio' className='header-input'/>
+                            <Form onSubmit={this.onSubmit}>
+                                <Input 
+                                    name='bio' 
+                                    type='text' 
+                                    placeholder='https://torre.bio/your-bio' 
+                                    className='header-input'
+                                    onChange={this.onChange}
+                                    value={this.state.bio}
+                                    disabled={this.props.loading}
+                                    loading={this.props.loading}
+                                />
                             </Form>
                         </div>
                     </div>

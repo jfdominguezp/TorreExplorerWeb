@@ -43,3 +43,21 @@ code {
 .ui.loading.loading.input>i.icon:after {
     border-color: rgba(0, 172, 193, 1.0) transparent transparent;
 }
+
+.card-description {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    height: 2.75rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.subheader, .ui.header.subheader {
+    color: rgba(0,0,0,.38);
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 32px;
+    max-width: 60%;
+    margin: auto;
+    text-align: center;
+}
