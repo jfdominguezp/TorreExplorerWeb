@@ -23,7 +23,7 @@ code {
     max-width: 700px;
 }
 
-.ui.input.header-input > input {
+.ui.form > .ui.input.header-input > input {
     border-width: 2px;
     border-color: #fff;
     background-color: #00acc1;

@@ -2,7 +2,8 @@ export const headerStyle = {
     backgroundColor: '#00acc1',
     color: '#fff',
     minHeight: '200px',
-    padding: '1em 0em'
+    padding: '1em 0em',
+    marginBottom: '3rem'
 };
 
 export const headerContentStyle = {
@@ -25,7 +26,7 @@ export const titleStyle = {
     fontWeight: '900',
     letterSpacing: '-1px',
     lineHeight: '42px',
-    maxWidth: '60%',
+    maxWidth: '80%',
     margin: 'auto'
 }
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Container, Header, Input, Menu, Segment } from 'semantic-ui-react';
-import * as styles from './Main.styles';
+import { Button, Container, Form, Header, Input, Menu, Segment } from 'semantic-ui-react';
+import * as styles from './Styles';
 
-export default class Main extends Component {
+export default class PageHeader extends Component {
     render() {
         return (
             <Segment vertical textAlign='center' style={styles.headerStyle}>
@@ -24,7 +24,9 @@ export default class Main extends Component {
                             </div>
                         </Header>
                         <div style={{ marginTop: '2rem' }}>
-                            <Input type='text' placeholder='https://torre.bio/your-bio' className='header-input'/>
+                            <Form>
+                                <Input type='text' placeholder='https://torre.bio/your-bio' className='header-input'/>
+                            </Form>
                         </div>
                     </div>
                 </Container>

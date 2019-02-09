@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import Main from './components/main/Main';
+import PageHeader from './components/PageHeader';
+import PeopleList from './components/PeopleList';
 import './App.css';
 
 class App extends Component {
     render() {
         return (
-            <Main />
+            <div>
+                <PageHeader />
+                <PeopleList />
+            </div>
         );
     }
 }
