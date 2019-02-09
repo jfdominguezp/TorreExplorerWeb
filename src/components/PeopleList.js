@@ -5,7 +5,7 @@ import * as styles from './Styles';
 
 export default class PeopleList extends Component {
     renderCards() {
-        return this.props.connections.map(({ person }) => {
+        return this.props.connections.map(({ person }, index) => {
             return (
                 <PersonCard
                     key={person.publicId}
@@ -13,6 +13,7 @@ export default class PeopleList extends Component {
                     name={person.name}
                     description={person.professionalHeadline}
                     weight={person.weight}
+                    index={index}
                 />
             )
         })
