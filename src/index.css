@@ -21,7 +21,6 @@ code {
 .ui.input.header-input {
     width: 100%;
     max-width: 700px;
-    padding: 2rem;
 }
 
 .ui.input.header-input > input {
@@ -35,4 +34,12 @@ code {
 
 .ui.input.header-input > input::placeholder {
     color: #efefef;
+}
+
+.ui.loading.loading.input>i.icon:before {
+    border: .2em solid rgba(255, 255, 255, 1.0); 
+}
+
+.ui.loading.loading.input>i.icon:after {
+    border-color: rgba(0, 172, 193, 1.0) transparent transparent;
 }
