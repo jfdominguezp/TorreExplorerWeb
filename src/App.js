@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withToastManager } from 'react-toast-notifications';
 import PageHeader from './components/PageHeader';
 import PeopleList from './components/PeopleList';
 import PersonModal from './components/PersonModal';
@@ -22,27 +23,54 @@ class App extends Component {
     };
 
     fetchConnections = async (bioURL) => {
-        const parts = bioURL.split('https://torre.bio/');
-        if (parts.length === 2) {
-            const connections = await api.fetchConnections(parts[1]);
-            this.setState({ connections, activeBio: parts[1] });
+        try {
+            const parts = bioURL.split('https://torre.bio/');
+            if (parts.length === 2) {
+                const connections = await api.fetchConnections(parts[1]);
+                this.setState({ connections, activeBio: parts[1] });
+            }
+        } catch (error) {
+            console.log(error);
+            this.toastError();
         }
+        
     }
 
     fetchConnectionPath = async (publicId) => {
-        this.setState({ loadingPath: true });
-        const connectionPath = await api.fetchConnectionPath(this.state.activeBio, publicId);
-        this.setState({ connectionPath, loadingPath: false });
+        try {
+            this.setState({ loadingPath: true });
+            const connectionPath = await api.fetchConnectionPath(this.state.activeBio, publicId);
+            this.setState({ connectionPath, loadingPath: false });
+        } catch (error) {
+            console.log(error);
+            this.toastError();
+        }
     }
 
     exportToCSV = async () => {
-        if (this.state.connections) {
-            this.setState({ loadingExport: true });
-            const ids = this.state.connections.map(({ person: { publicId } }) => publicId);
-            const data = await api.exportToCSV(ids, this.state.exportEmail);
-            this.setState({ loadingExport: false });
-            return data;
+        try {
+            if (this.state.connections) {
+                this.setState({ loadingExport: true });
+                const ids = this.state.connections.map(({ person: { publicId } }) => publicId);
+                const data = await api.exportToCSV(ids, this.state.exportEmail);
+                this.setState({ loadingExport: false, showExport: false });
+                this.toastSuccess("We've sent an exported CSV file to your email :)")
+                return data;
+            }
+        } catch (error) {
+            console.log(error);
+            this.toastError();
         }
+    }
+
+    toastError = (message) => {
+        const generic = 'Oops! It seems we have experienced an unexpected error. Please try again in a moment.'
+        this.props.toastManager.add(message || generic, { appearance: 'error' });
+    }
+
+    toastSuccess = (message) => {
+        const generic = 'Great! Your request has been completed successfully.'
+        this.props.toastManager.add(message || generic, { appearance: 'success' });
     }
 
     onCardClick = (connection) => {
@@ -145,4 +173,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withToastManager(App);

@@ -64,7 +64,7 @@ export default class PersonModal extends Component {
             <Segment placeholder>
                 <Header icon>
                     <Icon name='handshake outline' />
-                    { `¿Do you want to know who can introduce you to ${name}?`}
+                    { `¿Want to know who can introduce you to ${name}?`}
                 </Header>
                 <Button color='teal' basic
                     loading={loadingPath} 
