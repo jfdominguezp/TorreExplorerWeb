@@ -83,10 +83,17 @@ export default class PersonModal extends Component {
             professionalHeadline,
             weight,
             showModal,
-            onModalClose
+            onModalClose,
+            loadingPath
         } = this.props;
         return (
-            <Modal dimmer='inverted' open={showModal} onClose={onModalClose}>
+            <Modal 
+                dimmer='inverted' 
+                open={showModal} 
+                onClose={onModalClose} 
+                closeOnDimmerClick={!loadingPath}
+                closeOnEscape={!loadingPath}
+            >
                 <Modal.Content>
                     <Grid stackable>
                         <Grid.Row columns={16}>
