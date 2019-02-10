@@ -30,6 +30,10 @@ class App extends Component {
         this.setState({ loading });
     }
 
+    setModalVisibility = (showModal) => {
+        this.setState({ showModal });
+    }
+
     renderPersonModal() {
         if (this.state.activeConnection) {
             const {
@@ -53,6 +57,7 @@ class App extends Component {
                     strengths={sortedStengths}
                     opportunities={activeOpportunities}
                     showModal={this.state.showModal}
+                    setModalVisibility={this.setModalVisibility}
                 />
             );
         }

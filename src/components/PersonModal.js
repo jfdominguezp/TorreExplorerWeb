@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Grid, Header, Image, Icon, Label  } from 'semantic-ui-react';
+import { Button, Modal, Grid, Header, Image, Icon, Label, Segment  } from 'semantic-ui-react';
 import * as numeral from 'numeral';
 
 export default class PersonModal extends Component {
@@ -42,6 +42,18 @@ export default class PersonModal extends Component {
         }
     }
 
+    renderPath() {
+        return (
+            <Segment placeholder>
+                <Header icon>
+                    <Icon name='handshake outline' />
+                    { `¿Do you want to know who can introduce you to ${this.props.name}?`}
+                </Header>
+                <Button color='teal'>Let's find out!</Button>
+            </Segment>
+        );
+    }
+
     render() {
         const { 
             picture,
@@ -49,10 +61,11 @@ export default class PersonModal extends Component {
             name,
             professionalHeadline,
             weight,
-            showModal
+            showModal,
+            setModalVisibility
         } = this.props;
         return (
-            <Modal dimmer='inverted' open={showModal}>
+            <Modal dimmer='inverted' open={showModal} onClose={() => setModalVisibility(false)}>
                 <Modal.Content>
                     <Grid stackable>
                         <Grid.Row columns={16}>
@@ -79,6 +92,11 @@ export default class PersonModal extends Component {
                                     { this.renderOpportunities() }
                                     { this.renderStrengths() }
                                 </Grid.Row>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row columns={16}>
+                            <Grid.Column width={16}>
+                                { this.renderPath() }
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
