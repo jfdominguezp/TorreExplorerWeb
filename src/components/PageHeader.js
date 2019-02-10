@@ -22,7 +22,7 @@ export default class PageHeader extends Component {
         if (this.props.connections.length) {
             return (
                 <Menu.Item position='right'>
-                    <Button inverted>
+                    <Button inverted onClick={this.props.onExportClick}>
                         Export connections
                     </Button>
                 </Menu.Item>
