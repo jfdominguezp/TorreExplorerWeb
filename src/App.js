@@ -8,9 +8,13 @@ import './App.css';
 
 class App extends Component {
     state = {
+        activeBio: null,
         activeConnection: null,
         connections: [],
+        connectionPath: [],
         loading: false,
+        loadingPath: false,
+        loadingExport: false,
         showModal: false,
     };
 
@@ -22,7 +26,21 @@ class App extends Component {
         const parts = bioURL.split('https://torre.bio/');
         if (parts.length === 2) {
             const connections = await api.fetchConnections(parts[1]);
-            this.setState({ connections });
+            this.setState({ connections, activeBio: parts[1] });
+        }
+    }
+
+    fetchConnectionPath = async (publicId) => {
+        this.setState({ loadingPath: true });
+        const connectionPath = await api.fetchConnectionPath(this.state.activeBio, publicId);
+        this.setState({ connectionPath, loadingPath: false });
+    }
+
+    exportToCSV = async (email) => {
+        if (this.state.connections) {
+            const ids = this.state.connections.map(({ person: { publicId } }) => publicId);
+            const data = await api.exportToCSV(ids, email);
+            return data;
         }
     }
 
@@ -30,8 +48,12 @@ class App extends Component {
         this.setState({ loading });
     }
 
-    setModalVisibility = (showModal) => {
-        this.setState({ showModal });
+    onModalClose = () => {
+        this.setState({ 
+            showModal: false,
+            activeConnection: null,
+            connectionPath: []
+        });
     }
 
     renderPersonModal() {
@@ -57,7 +79,11 @@ class App extends Component {
                     strengths={sortedStengths}
                     opportunities={activeOpportunities}
                     showModal={this.state.showModal}
-                    setModalVisibility={this.setModalVisibility}
+                    onModalClose={this.onModalClose}
+                    fetchConnectionPath={this.fetchConnectionPath}
+                    connectionPath={this.state.connectionPath}
+                    loadingPath={this.state.loadingPath}
+                    activeBio={this.state.activeBio}
                 />
             );
         }

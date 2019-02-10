@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, Grid, Header, Image, Icon, Label, Segment  } from 'semantic-ui-react';
+import ConnectionPath from './ConnectionPath';
 import * as numeral from 'numeral';
 
 export default class PersonModal extends Component {
@@ -43,13 +44,33 @@ export default class PersonModal extends Component {
     }
 
     renderPath() {
+        const {
+            name,
+            loadingPath,
+            fetchConnectionPath,
+            connectionPath,
+            publicId,
+            activeBio
+        } = this.props;
+        if (connectionPath && connectionPath.length) {
+            return (
+                <Segment>
+                    <Header>Your connection path:</Header>
+                    <ConnectionPath activeBio={activeBio} path={connectionPath} />
+                </Segment>
+            );
+        }
         return (
             <Segment placeholder>
                 <Header icon>
                     <Icon name='handshake outline' />
-                    { `¿Do you want to know who can introduce you to ${this.props.name}?`}
+                    { `¿Do you want to know who can introduce you to ${name}?`}
                 </Header>
-                <Button color='teal'>Let's find out!</Button>
+                <Button color='teal' basic
+                    loading={loadingPath} 
+                    onClick={() => fetchConnectionPath(publicId)}>
+                    Let's find out!
+                </Button>
             </Segment>
         );
     }
@@ -62,10 +83,10 @@ export default class PersonModal extends Component {
             professionalHeadline,
             weight,
             showModal,
-            setModalVisibility
+            onModalClose
         } = this.props;
         return (
-            <Modal dimmer='inverted' open={showModal} onClose={() => setModalVisibility(false)}>
+            <Modal dimmer='inverted' open={showModal} onClose={onModalClose}>
                 <Modal.Content>
                     <Grid stackable>
                         <Grid.Row columns={16}>
