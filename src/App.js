@@ -148,6 +148,7 @@ class App extends Component {
                 showModal={this.state.showExport}
                 loading={this.state.loadingExport}
                 validateEmail={this.validateEmail}
+                onClose={this.onExportClose}
             />
         );
     }

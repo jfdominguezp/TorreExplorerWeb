@@ -3,12 +3,16 @@ import { Modal, Form } from 'semantic-ui-react';
 
 export default class ExportModal extends Component {
     render() {
-        const { email, loading,  onEmailChange, onSubmit, validateEmail } = this.props;
+        const { email, loading,  onEmailChange, onSubmit, validateEmail, onClose } = this.props;
         return (
                 <Modal 
                     dimmer='inverted' 
                     open={this.props.showModal} 
                     size='tiny'
+                    closeOnDimmerClick
+                    closeOnEscape
+                    closeIcon
+                    onClose={onClose}
                 >
                     <Modal.Header>Export connections</Modal.Header>
                     <Modal.Content>
