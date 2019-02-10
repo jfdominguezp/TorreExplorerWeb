@@ -23,19 +23,21 @@ export default class PeopleList extends Component {
 
     renderList() {
         return (
-            <Container>
-                <div style={{ marginBottom: '2rem' }}>
-                    <Header textAlign='center' className='subheader'>
-                        These are the best ranked people in your network
-                    </Header>
-                </div>
-                <Responsive as={Card.Group} stackable itemsPerRow={3} minWidth={992}>
-                    { this.renderCards() }
-                </Responsive>
-                <Responsive as={Card.Group} stackable itemsPerRow={2} maxWidth={991}>
-                    { this.renderCards() }
-                </Responsive>
-            </Container>
+            <Segment vertical style={styles.bodyContainerStyle}>
+                <Container>
+                    <div style={{ marginBottom: '2rem' }}>
+                        <Header textAlign='center' className='subheader'>
+                            These are the best ranked people in your network
+                        </Header>
+                    </div>
+                    <Responsive as={Card.Group} stackable itemsPerRow={3} minWidth={992}>
+                        { this.renderCards() }
+                    </Responsive>
+                    <Responsive as={Card.Group} stackable itemsPerRow={2} maxWidth={991}>
+                        { this.renderCards() }
+                    </Responsive>
+                </Container>
+            </Segment>
         );
     }
 

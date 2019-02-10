@@ -15,7 +15,8 @@ export const headerContentStyle = {
 }
 
 export const bodyContainerStyle = {
-    minHeight: '50vh'
+    minHeight: '50vh',
+    marginBottom: '3.5rem'
 }
 
 export const placeholderContainerStyle = {
