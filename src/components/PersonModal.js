@@ -34,7 +34,7 @@ export default class PersonModal extends Component {
                     <Label.Group size='small'>
                         {
                             this.props.opportunities.map(opportunity => {
-                                return <Label>{ opportunity }</Label>;
+                                return <Label key={opportunity}>{ opportunity }</Label>;
                             })
                         }
                     </Label.Group>
@@ -64,7 +64,7 @@ export default class PersonModal extends Component {
             <Segment placeholder>
                 <Header icon>
                     <Icon name='handshake outline' />
-                    { `¿Want to know who can introduce you to ${name}?`}
+                    { `Want to know who can introduce you to ${name}?`}
                 </Header>
                 <Button color='teal' basic
                     loading={loadingPath} 
