@@ -5,6 +5,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+    color: #00acc1;
+}
+
 .ui {
     font-family: "Muli", "Helvetica", "Arial", sans-serif !important;
 }
@@ -60,4 +64,15 @@ code {
     max-width: 60%;
     margin: auto;
     text-align: center;
+}
+
+.v-spacer {
+    margin-bottom: 0.75rem;
+}
+
+.small-uppercase-caption {
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: rgba(0,0,0,.38);
 }

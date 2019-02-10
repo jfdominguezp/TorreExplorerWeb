@@ -5,7 +5,8 @@ import * as styles from './Styles';
 
 export default class PeopleList extends Component {
     renderCards() {
-        return this.props.connections.map(({ person }, index) => {
+        return this.props.connections.map((connection, index) => {
+            const { person } = connection;
             return (
                 <PersonCard
                     key={person.publicId}
@@ -14,6 +15,7 @@ export default class PeopleList extends Component {
                     description={person.professionalHeadline}
                     weight={person.weight}
                     index={index}
+                    onClick={() => this.props.onCardClick(connection)}
                 />
             )
         })

@@ -7,7 +7,7 @@ export default class PersonCard extends Component {
     render() {
         const { name, description, image, weight, index } = this.props;
         return (
-            <Card>
+            <Card onClick={this.props.onClick}>
                 <Card.Content>
                     <Image floated='left' size='mini' circular src={image} />
                     <Card.Header>{name}</Card.Header>
